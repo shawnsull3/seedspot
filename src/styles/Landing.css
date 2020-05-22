@@ -1,0 +1,17 @@
+.textInput {
+    margin: 10px;
+    border-radius: 30px;
+}
+
+.formPaper {
+    width: 20vw;
+    height: 30vw;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.nextBtn {
+    justify-content: end;
+    align-content: flex-end;
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import '../styles/App.css';
 import Landing from './Landing';
-import { Grid, Container } from '@material-ui/core';
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 function App() {
   return (
-    <Container maxWidth="sm" className="App">
+    <div className="App">
+      <CssBaseline />
       Seedspot
       <Landing />
-    </Container>
+    </div>
   );
 }
 
