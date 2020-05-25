@@ -30,9 +30,9 @@ class AmIReadyToRaiseCapital extends Component {
     render() {
         return (
             <div className='container-flex'>
-                <div className='row'>
-                    <div className='col justify-content-center'>
-                        <h6>Am I ready to raise capital?</h6>
+                <div className='row full-height'>
+                    <div className='col card'>
+                        <h5>Am I ready to raise capital?</h5>
                             <Form fields={this.state.fields} handleInput={this.handleInput} />
                         <p className='subtext'>We will email you your results!</p>
                         <button className='btn button-border'>Next <strong> > </strong></button>
