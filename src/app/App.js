@@ -10,7 +10,7 @@ function App() {
       <div className='d-flex justify-content-center'>
         <Switch>
           <Route exact path='/' component={ReadyToRaiseCapital} />
-          <Route exact path='/main' component={MainPage} />
+          <Route path='/main' component={MainPage} />
         </Switch>
       </div>
 	  </div>
