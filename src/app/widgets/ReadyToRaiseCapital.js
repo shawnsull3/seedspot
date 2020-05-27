@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from '../common/Form';
 import '../../styles/Form.css'
 
-class AmIReadyToRaiseCapital extends Component {
+class ReadyToRaiseCapital extends Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -15,7 +15,7 @@ class AmIReadyToRaiseCapital extends Component {
                 {id: 'name', type: 'text', placeholder: '*Name'},
                 {id: 'email', type: 'email', placeholder: '*Email'},
                 {id: 'companyType', type: 'dropdown', placeholder: 'Company Type', options: [
-                    'For Profit', 'Customer facing', 'Retail'
+                    'For Profit', 'Customer facing', 'Retail', 'SaaS'
                 ]}
             ]
         }
@@ -35,7 +35,9 @@ class AmIReadyToRaiseCapital extends Component {
                         <h5>Am I ready to raise capital?</h5>
                             <Form fields={this.state.fields} handleInput={this.handleInput} />
                         <p className='subtext'>We will email you your results!</p>
-                        <button className='btn button-border'>Next <strong> > </strong></button>
+                        <button className='btn button-border' onClick={() => this.props.history.push('/main/profile')}>
+                            Next <strong> &#xbb; </strong>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -43,4 +45,4 @@ class AmIReadyToRaiseCapital extends Component {
     }
 }
 
-export default AmIReadyToRaiseCapital
+export default ReadyToRaiseCapital;

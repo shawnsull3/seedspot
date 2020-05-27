@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import '../../styles/App.css';
 import CompanyProfile from './CompanyProfile';
 import Investors from './Investors';
@@ -16,7 +16,6 @@ const MainPage = () => {
           </div>
           <div className='col-10'>
             <Switch>
-              <Route exact path='/main' render={() => <Redirect to='/main/profile' />} />
               <Route path='/main/profile' component={CompanyProfile} />
               <Route path='/main/investors' component={Investors} />
               <Route path='/main/tools' component={Tools} />
