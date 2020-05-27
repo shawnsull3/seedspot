@@ -10,13 +10,14 @@ class ReadyToRaiseCapital extends Component {
             name: '',
             email: '',
             companyType: '',
+            step: 0,
             fields: [
-                {id: 'company', type: 'text', placeholder: '*Company'},
+                [{id: 'company', type: 'text', placeholder: '*Company'},
                 {id: 'name', type: 'text', placeholder: '*Name'},
                 {id: 'email', type: 'email', placeholder: '*Email'},
                 {id: 'companyType', type: 'dropdown', placeholder: 'Company Type', options: [
                     'For Profit', 'Customer facing', 'Retail', 'SaaS'
-                ]}
+                ]}]
             ]
         }
         this.handleInput = this.handleInput.bind(this);
@@ -27,13 +28,17 @@ class ReadyToRaiseCapital extends Component {
         this.setState({[e.target.id]: e.target.value});
     }
 
+    switch(step) {
+        return <Form fields={this.state.fields[step]} handleInput={this.handleInput} />
+    }
+
     render() {
         return (
             <div className='container-flex'>
                 <div className='row full-height'>
                     <div className='col card'>
                         <h5>Am I ready to raise capital?</h5>
-                            <Form fields={this.state.fields} handleInput={this.handleInput} />
+                            {this.switch(this.state.step)}
                         <p className='subtext'>We will email you your results!</p>
                         <button className='btn button-border' onClick={() => this.props.history.push('/main/profile')}>
                             Next <strong> &#xbb; </strong>
