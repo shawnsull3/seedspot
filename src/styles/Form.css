@@ -1,15 +1,3 @@
-.inputField {
-    border-radius: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: solid black 1px;
-}
-
-.subtext {
-    color: gray;
-    font-size: 0.8em;
-}
-
 .button-border {
     border-radius: 15px;
     border: solid black 1px;
@@ -34,3 +22,17 @@
 .full-height {
     height: 100vh;
 }
+
+.inputField {
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: solid black 1px;
+}
+
+.subtext {
+    color: gray;
+    font-size: 0.8em;
+}
+
+
