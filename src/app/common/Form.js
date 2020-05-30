@@ -16,10 +16,11 @@ const Form = ({ fields, handleInput, state }) => {
                             onChange={handleInput} 
                             key={field.id} />
                       : field.options
-                        && <select 
+                        && <div className='inputField'>
+                        <select 
                               id={field.id} 
                               value={state[field.id]}
-                              className='form-control inputField' 
+                              className='form-control selectBox' 
                               onChange={handleInput} 
                               key={field.placeholder} 
                             >
@@ -28,6 +29,8 @@ const Form = ({ fields, handleInput, state }) => {
                                 <option value={option} key={option}>{option}</option>
                             ))}
                         </select>
+                        </div>
+
                 )
             })}
         </form>
