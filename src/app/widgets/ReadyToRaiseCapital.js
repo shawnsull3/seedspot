@@ -10,17 +10,30 @@ class ReadyToRaiseCapital extends Component {
             name: '',
             email: '',
             companyType: '',
+            location: '',
+            slogan: '',
             step: 0,
             fields: [
-                [{id: 'company', type: 'text', placeholder: '*Company'},
-                {id: 'name', type: 'text', placeholder: '*Name'},
-                {id: 'email', type: 'email', placeholder: '*Email'},
-                {id: 'companyType', type: 'dropdown', placeholder: 'Company Type', options: [
-                    'For Profit', 'Customer facing', 'Retail', 'SaaS'
-                ]}]
+                [
+                    {id: 'company', type: 'text', placeholder: '*Company'},
+                    {id: 'name', type: 'text', placeholder: '*Name'},
+                    {id: 'email', type: 'email', placeholder: '*Email'},
+                ],
+                [
+                    {id: 'location', placeholder: 'Location', options: [
+                        'Midwest', 'East Coast', 'West', 'Hell'
+                    ]},
+                    {id: 'slogan', type: 'text', placeholder: '*Slogan'},
+                ],
+                [
+                    {id: 'companyType', placeholder: 'Company Type', options: [
+                        'For Profit', 'Customer facing', 'Retail', 'SaaS'
+                    ]}
+                ],
             ]
         }
         this.handleInput = this.handleInput.bind(this);
+        this.switchStep = this.switchStep.bind(this);
     }
 
     handleInput(e) {
@@ -28,21 +41,33 @@ class ReadyToRaiseCapital extends Component {
         this.setState({[e.target.id]: e.target.value});
     }
 
-    switch(step) {
-        return <Form fields={this.state.fields[step]} handleInput={this.handleInput} />
+    switchStep(e) {
+        const move = e.target.id;
+        move === 'next' ? this.setState({step: this.state.step+1}) 
+          : move === 'back' && this.setState({step: this.state.step-1});
     }
 
     render() {
+        const { step, fields } = this.state;
         return (
             <div className='container-flex'>
                 <div className='row full-height'>
                     <div className='col card'>
                         <h5>Am I ready to raise capital?</h5>
-                            {this.switch(this.state.step)}
+                          <Form fields={fields[step]} handleInput={this.handleInput} />
                         <p className='subtext'>We will email you your results!</p>
-                        <button className='btn button-border' onClick={() => this.props.history.push('/main/profile')}>
-                            Next <strong> &#xbb; </strong>
-                        </button>
+                        <div className='row'>
+                            {step !== 0 &&
+                              <button className='btn button-border' id='back' onClick={this.switchStep}>
+                                Back <strong> &#xab; </strong>
+                              </button>
+                            }
+                            {step !== fields.length-1 &&
+                              <button className='btn button-border' id='next' onClick={this.switchStep}>
+                                Next <strong> &#xbb; </strong>
+                              </button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
