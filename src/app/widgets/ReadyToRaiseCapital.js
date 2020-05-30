@@ -54,7 +54,7 @@ class ReadyToRaiseCapital extends Component {
                 <div className='row full-height'>
                     <div className='col card'>
                         <h5>Am I ready to raise capital?</h5>
-                          <Form fields={fields[step]} handleInput={this.handleInput} />
+                          <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
                         <p className='subtext'>We will email you your results!</p>
                         <div className='row'>
                             {step !== 0 &&

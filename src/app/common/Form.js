@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../styles/Form.css'
 
-const Form = ({ fields, handleInput }) => {
+const Form = ({ fields, handleInput, state }) => {
     return (
         <form>
             {fields.map( field => {
@@ -9,7 +9,8 @@ const Form = ({ fields, handleInput }) => {
                     field.type === 'text' || field.type === 'email' || field.type === 'password'
                       ? <input 
                             type={field.type} 
-                            id={field.id} 
+                            id={field.id}
+                            value={state[field.id]} 
                             className='form-control inputField' 
                             placeholder={field.placeholder} 
                             onChange={handleInput} 
@@ -17,6 +18,7 @@ const Form = ({ fields, handleInput }) => {
                       : field.options
                         && <select 
                               id={field.id} 
+                              value={state[field.id]}
                               className='form-control inputField' 
                               onChange={handleInput} 
                               key={field.placeholder} 
