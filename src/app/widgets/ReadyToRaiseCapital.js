@@ -30,6 +30,11 @@ class ReadyToRaiseCapital extends Component {
                         'For Profit', 'Customer facing', 'Retail', 'SaaS'
                     ]}
                 ],
+            ],
+            headers: [
+                'Am I ready to raise capital?',
+                'Step 2 of 3',
+                'Step 3 of 3',
             ]
         }
         this.handleInput = this.handleInput.bind(this);
@@ -48,23 +53,28 @@ class ReadyToRaiseCapital extends Component {
     }
 
     render() {
-        const { step, fields } = this.state;
+        const { step, fields, headers } = this.state;
         return (
             <div className='container-flex'>
                 <div className='row full-height'>
                     <div className='col card'>
-                        <h5>Am I ready to raise capital?</h5>
+                        <h5>{headers[step]}</h5>
                           <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
                         <p className='subtext'>We will email you your results!</p>
                         <div className='row'>
                             {step !== 0 &&
                               <button className='btn button-border' id='back' onClick={this.switchStep}>
-                                Back <strong> &#xab; </strong>
+                                <strong> &#xab; </strong> Back
                               </button>
                             }
                             {step !== fields.length-1 &&
                               <button className='btn button-border' id='next' onClick={this.switchStep}>
                                 Next <strong> &#xbb; </strong>
+                              </button>
+                            }
+                            {step === fields.length-1 &&
+                              <button className='btn button-border' id='submit' onClick={() => this.props.history.push('/main/profile')}>
+                                Get Results!
                               </button>
                             }
                         </div>
