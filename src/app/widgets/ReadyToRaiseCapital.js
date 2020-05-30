@@ -60,7 +60,7 @@ class ReadyToRaiseCapital extends Component {
                     <div className='col card'>
                         <h5>{headers[step]}</h5>
                           <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
-                        <p className='subtext'>We will email you your results!</p>
+                        {step === 0 && <p className='subtext'>We will email you your results!</p> }
                         <div className='row'>
                             {step !== 0 &&
                               <button className='btn button-border' id='back' onClick={this.switchStep}>
