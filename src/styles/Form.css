@@ -1,7 +1,20 @@
 .button-border {
     border-radius: 15px;
     border: solid black 1px;
-    margin-left: 200px;
+    width: 100px
+    /* margin-left: 200px; */
+}
+
+#back {
+    position: absolute;
+    left: 3%;
+    top: 85%;
+}
+
+#next {
+    position: absolute;
+    left: 68%;
+    top: 85%;
 }
 
 .card {
