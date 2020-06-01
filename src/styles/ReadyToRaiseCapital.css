@@ -1,0 +1,42 @@
+.chevron {
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 5px;
+}
+
+#back {
+    position: absolute;
+    left: 7%;
+    top: 85%;
+    padding-right: 20px;
+}
+
+#next {
+    position: absolute;
+    left: 68%;
+    top: 85%;
+    padding-left: 20px;
+}
+
+.logo {
+    height: auto;
+    position: absolute;
+    left: 5%;
+    top: 5%
+}
+
+.logo-text {
+    color: rgb(114, 108, 108);
+    font-size: 0.7em;
+    position: absolute;
+    top: -5%;
+    z-index: 2;
+}
+
+.logo-img {
+    height: auto;
+    width: 150px;
+    position: relative;
+    left: 15%;
+    z-index: 1;
+}

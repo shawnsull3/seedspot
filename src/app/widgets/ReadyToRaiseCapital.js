@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Form from '../common/Form';
-import '../../styles/Form.css'
+import logo from '../../images/newStack.png';
+import '../../styles/Form.css';
+import '../../styles/ReadyToRaiseCapital.css';
 
 class ReadyToRaiseCapital extends Component {
     constructor(props) {
@@ -47,6 +49,7 @@ class ReadyToRaiseCapital extends Component {
     }
 
     switchStep(e) {
+        e.preventDefault();
         const move = e.target.id;
         move === 'next' ? this.setState({step: this.state.step+1}) 
           : move === 'back' && this.setState({step: this.state.step-1});
@@ -57,6 +60,10 @@ class ReadyToRaiseCapital extends Component {
         return (
             <div className='container-flex'>
                 <div className='row full-height'>
+                    <div className='logo'>
+                        <p className='logo-text'>Powered By</p>
+                        <img src={logo} alt='new stack ventures' className='logo-img'/>
+                    </div>
                     <div className='col card'>
                         <h5>{headers[step]}</h5>
                           <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
