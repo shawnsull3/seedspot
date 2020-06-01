@@ -1,20 +1,27 @@
 .button-border {
-    border-radius: 15px;
+    border-radius: 20px;
     border: solid black 1px;
-    width: 100px
-    /* margin-left: 200px; */
+    width: 100px;
+}
+
+.chevron {
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 5px;
 }
 
 #back {
     position: absolute;
     left: 3%;
     top: 85%;
+    padding-right: 20px;
 }
 
 #next {
     position: absolute;
     left: 68%;
     top: 85%;
+    padding-left: 20px;
 }
 
 .card {
@@ -37,12 +44,13 @@
 }
 
 .inputField {
-    border-radius: 15px;
+    border-radius: 20px;
     width: 210px;
     margin-top: 20px;
     margin-bottom: 20px;
     border: solid black 1px;
     overflow: hidden;
+    position: relative;
 }
 
 .subtext {
@@ -53,6 +61,25 @@
 .selectBox {
     border:0px;
     outline:none;
+}
+
+.select-arrow:after {
+    content: '\f078';
+    font: normal normal normal 0.7em/1 FontAwesome;
+    right: 8%;
+    top: 35%;
+    position: absolute;
+    pointer-events: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.select-arrow select {
+    -webkit-appearance: none;
+     -moz-appearance: none;
+    appearance: none;
 }
 
 

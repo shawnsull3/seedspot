@@ -16,19 +16,20 @@ const Form = ({ fields, handleInput, state }) => {
                             onChange={handleInput} 
                             key={field.id} />
                       : field.options
-                        && <div className='inputField'>
-                        <select 
-                              id={field.id} 
-                              value={state[field.id]}
-                              className='form-control selectBox' 
-                              onChange={handleInput} 
-                              key={field.placeholder} 
-                            >
-                            <option value="" selected="selected" disabled >{field.placeholder}</option>
-                            {field.options.map( option => (
-                                <option value={option} key={option}>{option}</option>
-                            ))}
-                        </select>
+                        && <div className='inputField' key={field.placeholder}>
+                          <div className='select-arrow'>
+                            <select 
+                                id={field.id} 
+                                value={state[field.id]}
+                                className='form-control selectBox' 
+                                onChange={handleInput}  
+                                >
+                                <option value="" selected disabled >{field.placeholder}</option>
+                                {field.options.map( option => (
+                                    <option value={option} key={option}>{option}</option>
+                                ))}
+                            </select>
+                          </div>
                         </div>
 
                 )

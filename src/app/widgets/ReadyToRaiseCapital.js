@@ -64,12 +64,12 @@ class ReadyToRaiseCapital extends Component {
                         <div className='row'>
                             {step !== 0 &&
                               <button className='btn button-border' id='back' onClick={this.switchStep}>
-                                <strong> &#xab; </strong> Back
+                                <i className="fa fa-chevron-left chevron"></i> Back
                               </button>
                             }
                             {step !== fields.length-1 &&
                               <button className='btn button-border' id='next' onClick={this.switchStep}>
-                                Next <strong> &#xbb; </strong>
+                                Next <i className="fa fa-chevron-right chevron"></i>
                               </button>
                             }
                             {step === fields.length-1 &&
