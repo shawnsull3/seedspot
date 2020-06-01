@@ -7,7 +7,7 @@ import MainPage from './widgets/MainPage';
 function App() {
   return (
     <div className='container-flex h-100'>
-      <div className='d-flex justify-content-center'>
+      <div className='d-flex justify-content-center background'>
         <Switch>
           <Route exact path='/' component={ReadyToRaiseCapital} />
           <Route path='/main' component={MainPage} />
