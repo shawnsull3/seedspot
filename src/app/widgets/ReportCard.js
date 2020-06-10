@@ -9,28 +9,43 @@ class ReportCard extends Component {
         super(props);
         this.state ={
             company: '',
-            name: '',
             email: '',
             companyType: '',
             location: '',
-            slogan: '',
+            companyStage: '',
+            DAU: '',
+            MAU: '',
+            NPSscore: null,
+            week2weekGrowth: null,
+            kValue: null,
             step: 0,
             fields: [
                 [
-                    {id: 'company', type: 'text', placeholder: '*Company'},
-                    {id: 'name', type: 'text', placeholder: '*Name'},
+                    {id: 'company', type: 'text', placeholder: '*Company Name'},
                     {id: 'email', type: 'email', placeholder: '*Email'},
-                ],
-                [
-                    {id: 'location', placeholder: 'Location', options: [
-                        'Midwest', 'East Coast', 'West'
+                    {id: 'location', placeholder: '*Location', options: [
+                        'New York City', 'San Francisco', 'Everywhere Else'
                     ]},
-                    {id: 'slogan', type: 'text', placeholder: '*Slogan'},
+                    {id: 'companyType', placeholder: '*Company Type', options: [
+                        'Consumer - Mobile/Internet', 'Enterprise SaaS', 'Consumer SaaS', 'Marketplace'
+                    ]}
                 ],
                 [
-                    {id: 'companyType', placeholder: 'Company Type', options: [
-                        'For Profit', 'Customer facing', 'Retail', 'SaaS'
-                    ]}
+                    {id: 'companyStage', placeholder: '*Company Stage', options: [
+                         'MVP', 'Early Acquisition', 'Proven Channel Acquisition', 'Early Evidence of PMF', 'PMF', 'Scale'
+                    ]},
+                    {id: 'DAU', placeholder: '*Daily Active Users (DAU)', options: [
+                        '0 - 300', '500 - 25k', '25k - 50k', '100k - 500k', '500k - 1M', '>1M'
+                    ]},
+                   {id: 'MAU', placeholder: '*Monthly Active Users (MAU)', options: [
+                    '0 - 10k', '>15k', '750k - 1.5M', '3M - 15M', '15M - 30M', '>30M'
+                    ]},
+                    {id: 'NPSscore', type: 'number', placeholder: '*NPS score (-100 - +100)', min: -100, max: 100},
+                    {id: 'week2weekGrowth', type: 'number', placeholder: '*Week to week growth (%)', min: 0, max: 100},
+                    {id: 'kValue', type: 'number', placeholder: '*K - Value (0 - 10)', min: 0, max: 10},
+                ],
+                [
+                    {id: 'name', type: 'text', placeholder: '*Name'},
                 ],
             ],
             headers: [
