@@ -8,6 +8,14 @@ html {
 }
 
 .background {
-  background-image: url('../images/background.png');
-  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+.background:after {
+  content: ' ';
+  border-top: 100vh solid #2D2C2D;
+  border-right: 100vw solid transparent;
+  width: 0;
+  position: absolute;
 }
