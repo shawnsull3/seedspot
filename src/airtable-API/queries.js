@@ -1,21 +1,31 @@
-const base = require('airtable').base('appaMXxGkrqlqhcXf');
+const API_KEY = require('./airtable').API_KEY;
 
-base('Applicants').select({
-    // Selecting the first 3 records in All applicants:
-    maxRecords: 3,
-    view: "All applicants"
-}).eachPage(function page(records, fetchNextPage) {
-    // This function (`page`) will get called for each page of records.
+export default function insertToAirTable(companyInfo) {
+    var Airtable = require('airtable');
+    const base = new Airtable({ apiKey: API_KEY }).base("appM1hP46JiOYkOdO");
 
-    records.forEach(function(record) {
-        console.log('Retrieved', record.get('Name'));
-    });
-
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
-    fetchNextPage();
-
-}, function done(err) {
-    if (err) { console.error(err); return; }
-});
+    base('Startups').create([
+        {
+          "fields": {
+            "Company Name": companyInfo.company,
+            "email": companyInfo.email,
+            "Location": companyInfo.location,
+            "Company Type": companyInfo.companyType,
+            "Company Stage": companyInfo.companyStage,
+            "DAU": companyInfo.DAU,
+            "MAU": companyInfo.MAU,
+            "NPS Score": companyInfo.NPSscore,
+            "Week to week growth": companyInfo.week2weekGrowth,
+            "K-Value": companyInfo.kValue 
+          }
+        },
+      ], {typecast: true}, function(err, records) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        records.forEach(function (record) {
+          console.log(record.getId());
+        });
+      });
+}

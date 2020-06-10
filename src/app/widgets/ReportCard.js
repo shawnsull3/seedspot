@@ -3,6 +3,7 @@ import Form from '../common/Form';
 import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
+import insertToAirTable from '../../airtable-API/queries';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -15,9 +16,9 @@ class ReportCard extends Component {
             companyStage: '',
             DAU: '',
             MAU: '',
-            NPSscore: null,
-            week2weekGrowth: null,
-            kValue: null,
+            NPSscore: '',
+            week2weekGrowth: '',
+            kValue: '',
             step: 0,
             fields: [
                 [
@@ -56,6 +57,7 @@ class ReportCard extends Component {
         }
         this.handleInput = this.handleInput.bind(this);
         this.switchStep = this.switchStep.bind(this);
+        this.submitForm = this.submitForm.bind(this);
     }
 
     handleInput(e) {
@@ -66,10 +68,13 @@ class ReportCard extends Component {
     switchStep(e) {
         e.preventDefault();
         let move = e.target.id;
-        console.log(e.target)
-        console.log(move);
         move === 'next' ? this.setState({step: this.state.step+1}) 
           : move === 'back' && this.setState({step: this.state.step-1});
+    }
+
+    submitForm() {
+        // need to format and send data to airtable & generate an email to be sent out
+        insertToAirTable(this.state);
     }
 
     render() {
@@ -82,7 +87,7 @@ class ReportCard extends Component {
                         <img src={logo} alt='new stack ventures' className='logo-img'/>
                     </div>
                     <div className='col card'>
-                        <h5>{headers[step]}</h5>
+                        <h4>{headers[step]}</h4>
                           <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
                         {step === 0 && <p className='subtext'>Get a valuation estimate and grades on your metrics</p> }
                         <div className='row'>
@@ -97,7 +102,7 @@ class ReportCard extends Component {
                               </button>
                             }
                             {step === fields.length-1 &&
-                              <button className='btn button-border' id='submit' onClick={() => this.props.history.push('/main/profile')}>
+                              <button className='btn button-border' id='submit' onClick={this.submitForm}>
                                 Get Results!
                               </button>
                             }
