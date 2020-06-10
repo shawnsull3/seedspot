@@ -5,8 +5,8 @@
 }
 
 .card {
-    height: 500px;
-    width: 400px;
+    height: 525px;
+    width: 475px;
     margin-top: auto;
     margin-bottom: auto;
     background: white;
@@ -17,6 +17,7 @@
     flex-direction: column;
     padding: 10px;
     border-radius: 35px;
+    z-index: 2;
 }
 
 .full-height {
@@ -25,7 +26,7 @@
 
 .inputField {
     border-radius: 20px;
-    width: 210px;
+    width: 300px;
     margin-top: 20px;
     margin-bottom: 20px;
     border: solid black 1px;
