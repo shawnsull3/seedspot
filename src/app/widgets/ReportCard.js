@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Form from '../common/Form';
 import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
-import '../../styles/ReadyToRaiseCapital.css';
+import '../../styles/ReportCard.css';
 
-class ReadyToRaiseCapital extends Component {
+class ReportCard extends Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -23,7 +23,7 @@ class ReadyToRaiseCapital extends Component {
                 ],
                 [
                     {id: 'location', placeholder: 'Location', options: [
-                        'Midwest', 'East Coast', 'West', 'Hell'
+                        'Midwest', 'East Coast', 'West'
                     ]},
                     {id: 'slogan', type: 'text', placeholder: '*Slogan'},
                 ],
@@ -34,7 +34,7 @@ class ReadyToRaiseCapital extends Component {
                 ],
             ],
             headers: [
-                'Am I ready to raise capital?',
+                'Startup Report Card',
                 'Step 2 of 3',
                 'Step 3 of 3',
             ]
@@ -50,7 +50,9 @@ class ReadyToRaiseCapital extends Component {
 
     switchStep(e) {
         e.preventDefault();
-        const move = e.target.id;
+        let move = e.target.id;
+        console.log(e.target)
+        console.log(move);
         move === 'next' ? this.setState({step: this.state.step+1}) 
           : move === 'back' && this.setState({step: this.state.step-1});
     }
@@ -67,7 +69,7 @@ class ReadyToRaiseCapital extends Component {
                     <div className='col card'>
                         <h5>{headers[step]}</h5>
                           <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
-                        {step === 0 && <p className='subtext'>We will email you your results!</p> }
+                        {step === 0 && <p className='subtext'>Get a valuation estimate and grades on your metrics</p> }
                         <div className='row'>
                             {step !== 0 &&
                               <button className='btn button-border' id='back' onClick={this.switchStep}>
@@ -92,4 +94,4 @@ class ReadyToRaiseCapital extends Component {
     }
 }
 
-export default ReadyToRaiseCapital;
+export default ReportCard;
