@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route} from 'react-router-dom';
 import '../styles/App.css';
-import ReadyToRaiseCapital from './widgets/ReadyToRaiseCapital';
+import ReportCard from './widgets/ReportCard';
 import MainPage from './widgets/MainPage';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className='container-flex h-100'>
       <div className='d-flex justify-content-center background'>
         <Switch>
-          <Route exact path='/' component={ReadyToRaiseCapital} />
+          <Route exact path='/' component={ReportCard} />
           <Route path='/main' component={MainPage} />
         </Switch>
       </div>
