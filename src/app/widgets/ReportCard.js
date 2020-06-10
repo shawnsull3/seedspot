@@ -60,7 +60,7 @@ class ReportCard extends Component {
 
     handleInput(e) {
         e.preventDefault();
-        this.setState({[e.target.id]: e.target.value});
+        this.setState({[e.target.id]: e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value});
     }
 
     switchStep(e) {
