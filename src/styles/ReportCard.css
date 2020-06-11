@@ -7,14 +7,14 @@
 #back {
     position: absolute;
     left: 7%;
-    top: 85%;
+    top: 87%;
     padding-right: 20px;
 }
 
 #next {
     position: absolute;
-    left: 68%;
-    top: 85%;
+    left: 72%;
+    top: 87%;
     padding-left: 20px;
 }
 
@@ -39,4 +39,8 @@
     position: relative;
     left: 15%;
     z-index: 1;
+}
+
+.header {
+    margin-top: -50px;
 }

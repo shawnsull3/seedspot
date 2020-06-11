@@ -87,7 +87,7 @@ class ReportCard extends Component {
                         <img src={logo} alt='new stack ventures' className='logo-img'/>
                     </div>
                     <div className='col card'>
-                        <h4>{headers[step]}</h4>
+                        <h4 className='header' >{headers[step]}</h4>
                           <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
                         {step === 0 && <p className='subtext'>Get a valuation estimate and grades on your metrics</p> }
                         <div className='row'>
