@@ -46,7 +46,7 @@ class ReportCard extends Component {
                     {id: 'kValue', type: 'number', placeholder: '*K - Value (0 - 10)', min: 0, max: 10},
                 ],
                 [
-                    {id: 'name', type: 'text', placeholder: '*Name'},
+                    {id: 'example', type: 'text', placeholder: '*example'},
                 ],
             ],
             headers: [
@@ -73,8 +73,8 @@ class ReportCard extends Component {
     }
 
     submitForm() {
-        // need to format and send data to airtable & generate an email to be sent out
         insertToAirTable(this.state);
+        // function to send state data to logic processor
     }
 
     render() {
