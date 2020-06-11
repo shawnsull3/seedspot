@@ -1,6 +1,44 @@
 import React from 'react'
 
-const emailTemplate = (companyResults) => {
+const companyResults = {
+    companyName: 'Streamline Farts',
+    estimatedValuation: '10M',
+    metrics: [
+        {name: 'DAU', grade: 'B'},
+        {name: 'MAU', grade: 'A+'},
+    ]
+}
+
+const renderGradeProgress = (grade) => {
+    const chartArr = [];
+    let fill = 1;
+    const options= ['D', 'C', 'B', 'A', 'A+'];
+    for (let i = 0; i < options.length; i++) {
+        if (grade === options[i]) {
+            fill = i + 1;
+            break;
+        }
+    }
+    
+    for(let i = 1; i <= 5; i++) {
+        if (i <= fill) {
+            chartArr.push(
+                <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
+                    &nbsp;
+                </td>
+            )
+        } else {
+            chartArr.push(
+                <td style="font-size: 0; line-height: 0;" width="60">
+                    &nbsp;
+                </td>
+            )
+        }
+    }
+    return chartArr;
+}
+
+const emailTemplate = ({ companyResults }) => {
     return (
         <table align="center" cellpadding="0" cellspacing="0" width="500" style="border:2px black solid; border-radius: 20px;">
             <td>
@@ -43,92 +81,40 @@ const emailTemplate = (companyResults) => {
                     Grade
                 </td>
             </tr>
-            <tr>
-                <tr>
-                    <td style="padding: 0px 0px 10px 20px;" align="start">
-                        Daily Ative Users
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table cellpadding="0" cellspacing="0" width="100%" style="padding: 0px 0px 20px 0px;">
-                            <tr>
-                                <td style="font-size: 0; line-height: 0;" width="30">
-                                    &nbsp;
-                                </td>
-                                <td width="250" valign="center">
-                                    <table border="1" cellpadding="0" cellspacing="0" height="15" >
-                                        <tr>
-                                            <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
-                                                &nbsp;
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td width="50" valign="top" style="font-weight: bold; font-size: 1.2em;">
-                                    A+
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </tr>
-            <tr>
-                <tr>
-                    <td style="padding: 0px 0px 10px 20px;" align="start">
-                        Monthly Ative Users
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td style="font-size: 0; line-height: 0;" width="30">
-                                    &nbsp;
-                                </td>
-                                <td width="250" valign="center">
-                                    <table border="1" cellpadding="0" cellspacing="0" height="15">
-                                        <tr>
-                                            <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60">
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60">
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60">
-                                                &nbsp;
-                                            </td>
-                                            <td style="font-size: 0; line-height: 0;" width="60">
-                                                &nbsp;
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td width="50" valign="top" style="font-weight: bold; font-size: 1.2em;">
-                                    D
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </tr>
+            {companyResults.metrics.map(metric => {
+                return (
+                    <tr>
+                        <tr>
+                            <td style="padding: 0px 0px 10px 20px;" align="start">
+                                {metric.name}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table cellpadding="0" cellspacing="0" width="100%" style="padding: 0px 0px 20px 0px;">
+                                    <tr>
+                                        <td style="font-size: 0; line-height: 0;" width="30">
+                                            &nbsp;
+                                        </td>
+                                        <td width="250" valign="center">
+                                            <table border="1" cellpadding="0" cellspacing="0" height="15" >
+                                                <tr>
+                                                    {renderGradeProgress(metric.grade)}
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td width="50" valign="top" style="font-weight: bold; font-size: 1.2em;">
+                                            {metric.grade}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tr>
+                )
+            })}
         </table>
     )
 }
 
-export default emailTemplate
+export default emailTemplate;
