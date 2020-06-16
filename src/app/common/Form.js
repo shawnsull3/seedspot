@@ -7,7 +7,7 @@ const Form = ({ fields, handleInput, state, validateInput }) => {
             {fields.map( (field, index) => {
                 return (
                     field.type === 'text' || field.type === 'email' || field.type === 'password' || field.type === 'number'
-                      ? <div>
+                      ? <div key={field.id}>
                           <input 
                                 type={field.type} 
                                 id={field.id}
@@ -16,8 +16,7 @@ const Form = ({ fields, handleInput, state, validateInput }) => {
                                 max={field.max} 
                                 className='form-control inputField' 
                                 placeholder={field.placeholder} 
-                                onChange={handleInput} 
-                                key={field.id}
+                                onChange={handleInput}
                                 onBlur={ e => {field.errorMessage && validateInput(e, index)}} />
                             {field.showError && <div className='error'>{field.errorMessage}</div>}
                          </div>
