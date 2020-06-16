@@ -5,6 +5,8 @@ import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
 import insertToAirTable from '../../airtable-API/queries';
 import update from 'immutability-helper';
+import { validate } from 'validate.js';
+import constraints from '../common/constraints';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class ReportCard extends Component {
             fields: [
                 [
                     {id: 'company', type: 'text', placeholder: '*Company Name'},
-                    {id: 'email', type: 'email', placeholder: '*Email'},
+                    {id: 'email', type: 'email', placeholder: '*Email', errorMessage: 'Enter a valid email', showError: false},
                     {id: 'location', placeholder: '*Location', options: [
                         'New York City', 'San Francisco', 'Everywhere Else'
                     ]},
@@ -93,7 +95,14 @@ class ReportCard extends Component {
         }
 
         if (type === 'email') {
+            const validationResult = validate(this.state, constraints) // returns a message if !valid
 
+            if (validationResult) {
+                errorDisplay(true)
+            }
+            else {
+                errorDisplay(false)
+            }
         } else if (type === 'number') {
             if (parseFloat(value) > max || parseFloat(value) < min) {
                 errorDisplay(true);
@@ -146,38 +155,3 @@ class ReportCard extends Component {
 }
 
 export default ReportCard;
-
-
-
-// this.setState( prevState => {
-//     console.log(prevState);
-//     return ({
-//         ...prevState,
-//         fields: {
-//             ...prevState.fields,
-//             [prevState.step]: {
-//                 ...prevState.fields[prevState.step],
-//                 [index]: {
-//                     ...prevState.fields[prevState.step][index],
-//                     showError: true
-//                 }
-//             }
-//         }
-//     }
-//     )
-// })
-
-// let poop = {
-//     ...this.state,
-//     fields: {
-//         ...this.state.fields,
-//         [this.state.step]: {
-//             ...this.state.fields[this.state.step],
-//             [index]: {
-//                 ...this.state.fields[this.state.step][index],
-//                 showError: true
-//             }
-//         }
-//     }
-// }
-// console.log(poop);
