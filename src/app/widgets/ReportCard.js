@@ -4,6 +4,7 @@ import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
 import insertToAirTable from '../../airtable-API/queries';
+import update from 'immutability-helper';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -41,9 +42,9 @@ class ReportCard extends Component {
                    {id: 'MAU', placeholder: '*Monthly Active Users (MAU)', options: [
                     '0 - 10k', '>15k', '750k - 1.5M', '3M - 15M', '15M - 30M', '>30M'
                     ]},
-                    {id: 'NPSscore', type: 'number', placeholder: '*NPS score (-100 - +100)', min: -100, max: 100},
-                    {id: 'week2weekGrowth', type: 'number', placeholder: '*Week to week growth (%)', min: 0, max: 100},
-                    {id: 'kValue', type: 'number', placeholder: '*K - Value (0 - 10)', min: 0, max: 10},
+                    {id: 'NPSscore', type: 'number', placeholder: '*NPS score (-100 - +100)', min: -100, max: 100, errorMessage: 'Enter a number between -100 - 100', showError: false},
+                    {id: 'week2weekGrowth', type: 'number', placeholder: '*Week to week growth (%)', min: 0, max: 100, errorMessage: 'Enter a number between 0 - 100', showError: false},
+                    {id: 'kValue', type: 'number', placeholder: '*K - Value (0 - 10)', min: 0, max: 10, errorMessage: 'Enter a number between 0 - 10', showError: false},
                 ],
                 [
                     {id: 'example', type: 'text', placeholder: '*example'},
@@ -57,12 +58,14 @@ class ReportCard extends Component {
         }
         this.handleInput = this.handleInput.bind(this);
         this.switchStep = this.switchStep.bind(this);
+        this.validateInput = this.validateInput.bind(this);
         this.submitForm = this.submitForm.bind(this);
     }
 
     handleInput(e) {
         e.preventDefault();
-        this.setState({[e.target.id]: e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value});
+        let { value, type, id } = e.target;
+        this.setState({[id]: type === 'number' ? parseFloat(value) : type === 'email' ? value.toLowerCase() : value});
     }
 
     switchStep(e) {
@@ -70,6 +73,34 @@ class ReportCard extends Component {
         let move = e.target.id;
         move === 'next' ? this.setState({step: this.state.step+1}) 
           : move === 'back' && this.setState({step: this.state.step-1});
+    }
+
+    validateInput(e, index) {
+        let { value, type, min, max} = e.target;
+
+        const errorDisplay = (boolean) => {
+            this.setState({
+                fields: update(this.state.fields, {
+                    [this.state.step]: {
+                        [index]: {
+                            "showError": {
+                                $set: boolean
+                            } 
+                        }
+                    }
+                })
+            })
+        }
+
+        if (type === 'email') {
+
+        } else if (type === 'number') {
+            if (parseFloat(value) > max || parseFloat(value) < min) {
+                errorDisplay(true);
+            } else {
+                errorDisplay(false);
+            }
+        }
     }
 
     submitForm() {
@@ -88,7 +119,7 @@ class ReportCard extends Component {
                     </div>
                     <div className='col card'>
                         <h4 className='header' >{headers[step]}</h4>
-                          <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} />
+                          <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} validateInput={this.validateInput} />
                         {step === 0 && <p className='subtext'>Get a valuation estimate and grades on your metrics</p> }
                         <div className='row'>
                             {step !== 0 &&
@@ -115,3 +146,38 @@ class ReportCard extends Component {
 }
 
 export default ReportCard;
+
+
+
+// this.setState( prevState => {
+//     console.log(prevState);
+//     return ({
+//         ...prevState,
+//         fields: {
+//             ...prevState.fields,
+//             [prevState.step]: {
+//                 ...prevState.fields[prevState.step],
+//                 [index]: {
+//                     ...prevState.fields[prevState.step][index],
+//                     showError: true
+//                 }
+//             }
+//         }
+//     }
+//     )
+// })
+
+// let poop = {
+//     ...this.state,
+//     fields: {
+//         ...this.state.fields,
+//         [this.state.step]: {
+//             ...this.state.fields[this.state.step],
+//             [index]: {
+//                 ...this.state.fields[this.state.step][index],
+//                 showError: true
+//             }
+//         }
+//     }
+// }
+// console.log(poop);
