@@ -1,14 +1,5 @@
 import React from 'react'
 
-const companyResults = {
-    companyName: 'Streamline Farts',
-    estimatedValuation: '10M',
-    metrics: [
-        {name: 'DAU', grade: 'B'},
-        {name: 'MAU', grade: 'A+'},
-    ]
-}
-
 const renderGradeProgress = (grade) => {
     const chartArr = [];
     let fill = 1;
@@ -19,17 +10,17 @@ const renderGradeProgress = (grade) => {
             break;
         }
     }
-    
+
     for(let i = 1; i <= 5; i++) {
         if (i <= fill) {
             chartArr.push(
-                <td style="font-size: 0; line-height: 0;" width="60" bgcolor='#6fde76'>
+                <td style={{fontSize: "0", lineHeight: "0"}} width="60" bgcolor='#6fde76'>
                     &nbsp;
                 </td>
             )
         } else {
             chartArr.push(
-                <td style="font-size: 0; line-height: 0;" width="60">
+                <td style={{fontSize: "0", lineHeight: "0"}} width="60">
                     &nbsp;
                 </td>
             )
@@ -38,26 +29,26 @@ const renderGradeProgress = (grade) => {
     return chartArr;
 }
 
-const emailTemplate = ({ companyResults }) => {
+export const emailTemplate = (companyResults) => {
     return (
-        <table align="center" cellpadding="0" cellspacing="0" width="500" style="border:2px black solid; border-radius: 20px;">
+        <table align="center" cellpadding="0" cellspacing="0" width="500" style={{border:"2px black solid", borderRadius: "20px"}} >
             <td>
                 <table align="center" cellpadding="10" cellspacing="0" width="500">
                     <tr>
-                        <td align="center" style="padding: 40px 0 5px 0;">
-                            Company Name
+                        <td align="center" style={{padding: "40px 0 5px 0"}} >
+                            {companyResults.companyName}
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="font-weight: bold;" >
+                        <td align="center" style={{fontWeight: "bold"}} >
                             Startup Report Card
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding: 0px 50px 10px 50px;">
+                        <td style={{padding: "0px 50px 10px 50px"}}>
                             <table cellpadding="0" cellspacing="0" width="100%">
                             <tr bgcolor="#4b2c85">
-                                <td style="font-size: 0; line-height: 0;" height="7">
+                                <td style={{fontSize: "0", lineHeight: "0"}} height="7">
                                     &nbsp;
                                 </td>
                             </tr>
@@ -65,19 +56,19 @@ const emailTemplate = ({ companyResults }) => {
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="font-weight: bold;" >
+                        <td align="center" style={{fontWeight: "bold"}} >
                             Estimated Valuation
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="font-size: 0.8em; color: #c9c9c9">
-                            $5M - $10M
+                        <td align="center" style={{fontSize: "0.8em", color: "#c9c9c9"}} >
+                            {companyResults.estimatedValuation}
                         </td>
                     </tr>
                 </table>
             </td>
             <tr>
-                <td style="padding: 20px 50px 0px 0px;" align="end">
+                <td style={{padding: "20px 50px 0px 0px"}} align="end">
                     Grade
                 </td>
             </tr>
@@ -85,15 +76,15 @@ const emailTemplate = ({ companyResults }) => {
                 return (
                     <tr>
                         <tr>
-                            <td style="padding: 0px 0px 10px 20px;" align="start">
+                            <td style={{padding: "0px 0px 10px 20px"}} align="start">
                                 {metric.name}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <table cellpadding="0" cellspacing="0" width="100%" style="padding: 0px 0px 20px 0px;">
+                                <table cellpadding="0" cellspacing="0" width="100%" style={{padding: "0px 0px 20px 0px"}} >
                                     <tr>
-                                        <td style="font-size: 0; line-height: 0;" width="30">
+                                        <td style={{fontSize: "0", lineHeight: "0"}} width="30">
                                             &nbsp;
                                         </td>
                                         <td width="250" valign="center">
@@ -103,7 +94,7 @@ const emailTemplate = ({ companyResults }) => {
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td width="50" valign="top" style="font-weight: bold; font-size: 1.2em;">
+                                        <td width="50" valign="top" style={{fontWeight: "bold", fontSize: "1.2em"}} >
                                             {metric.grade}
                                         </td>
                                     </tr>
