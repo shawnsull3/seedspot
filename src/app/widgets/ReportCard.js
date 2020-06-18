@@ -4,9 +4,12 @@ import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
 import insertToAirTable from '../../airtable-API/queries';
+import sendEmail from '../common/sendGrid';
+import constraints from '../common/constraints';
+import emailTemplate from '../common/emailTemplate';
 import update from 'immutability-helper';
 import { validate } from 'validate.js';
-import constraints from '../common/constraints';
+import { renderToStaticMarkup } from 'react-dom/server'
 
 class ReportCard extends Component {
     constructor(props) {
@@ -99,8 +102,7 @@ class ReportCard extends Component {
 
             if (validationResult) {
                 errorDisplay(true)
-            }
-            else {
+            } else {
                 errorDisplay(false)
             }
         } else if (type === 'number') {
@@ -113,8 +115,20 @@ class ReportCard extends Component {
     }
 
     submitForm() {
-        insertToAirTable(this.state);
+        // insertToAirTable(this.state);
         // function to send state data to logic processor
+        const companyResults = {
+            companyName: 'Streamline',
+            estimatedValuation: '10M',
+            metrics: [
+                {name: 'Daily Active Users', grade: 'B'},
+                {name: 'Monthly Active Users', grade: 'A+'},
+                {name: 'NPS score', grade: 'D'},
+            ]
+        }
+        const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
+        sendEmail(htmlStr);
+
     }
 
     render() {
