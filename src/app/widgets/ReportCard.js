@@ -3,13 +3,13 @@ import Form from '../common/Form';
 import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
-import insertToAirTable from '../../airtable-API/queries';
 import sendEmail from '../common/sendGrid';
 import constraints from '../common/constraints';
 import emailTemplate from '../common/emailTemplate';
 import update from 'immutability-helper';
 import { validate } from 'validate.js';
 import { renderToStaticMarkup } from 'react-dom/server'
+import axios from 'axios';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -115,7 +115,7 @@ class ReportCard extends Component {
     }
 
     submitForm() {
-        // insertToAirTable(this.state);
+        axios.post('/airtable', this.state);
         // function to send state data to logic processor
         const companyResults = {
             companyName: 'Streamline',
@@ -126,8 +126,9 @@ class ReportCard extends Component {
                 {name: 'NPS score', grade: 'D'},
             ]
         }
-        const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
-        sendEmail(htmlStr);
+        // const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
+        // console.log(htmlStr)
+        // sendEmail(htmlStr);
 
     }
 
