@@ -1,6 +1,6 @@
 const API_KEY = require('./airtable').API_KEY;
 
-export default function insertToAirTable(companyInfo) {
+const insertToAirTable = (companyInfo) => {
     var Airtable = require('airtable');
     const base = new Airtable({ apiKey: API_KEY }).base("appM1hP46JiOYkOdO");
 
@@ -28,4 +28,8 @@ export default function insertToAirTable(companyInfo) {
           console.log(record.getId());
         });
       });
+}
+
+module.exports = {
+  insertToAirTable
 }
