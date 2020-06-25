@@ -3,7 +3,6 @@ import Form from '../common/Form';
 import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
-import sendEmail from '../common/sendGrid';
 import constraints from '../common/constraints';
 import emailTemplate from '../common/emailTemplate';
 import update from 'immutability-helper';
@@ -115,7 +114,8 @@ class ReportCard extends Component {
     }
 
     submitForm() {
-        axios.post('/airtable', this.state);
+        const url = 'http://localhost:3001'
+        axios.post(`${url}/airtable`, this.state);
         // function to send state data to logic processor
         const companyResults = {
             companyName: 'Streamline',
@@ -126,10 +126,8 @@ class ReportCard extends Component {
                 {name: 'NPS score', grade: 'D'},
             ]
         }
-        // const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
-        // console.log(htmlStr)
-        // sendEmail(htmlStr);
-
+        const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
+        axios.post(`${url}/sendgrid`, {htmlStr: htmlStr});
     }
 
     render() {
