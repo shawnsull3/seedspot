@@ -25,10 +25,10 @@ class ReportCard extends Component {
             week2weekGrowth: '',
             kValue: '',
             step: 0,
+            investorInfo: [],
             fields: [
                 [
                     {id: 'company', type: 'text', placeholder: '*Company Name'},
-                    {id: 'email', type: 'email', placeholder: '*Email', errorMessage: 'Enter a valid email', showError: false},
                     {id: 'location', placeholder: '*Location', options: [
                         'New York City', 'San Francisco', 'Everywhere Else'
                     ]},
@@ -51,11 +51,11 @@ class ReportCard extends Component {
                     {id: 'kValue', type: 'number', placeholder: '*K - Value (0 - 10)', min: 0, max: 10, errorMessage: 'Enter a number between 0 - 10', showError: false},
                 ],
                 [
-                    {id: 'example', type: 'text', placeholder: '*example'},
+                    {id: 'email', type: 'email', placeholder: '*Email', errorMessage: 'Enter a valid email', showError: false},
                 ],
             ],
             headers: [
-                'Startup Report Card',
+                'Get Started',
                 'Step 2 of 3',
                 'Step 3 of 3',
             ]
@@ -64,6 +64,19 @@ class ReportCard extends Component {
         this.switchStep = this.switchStep.bind(this);
         this.validateInput = this.validateInput.bind(this);
         this.submitForm = this.submitForm.bind(this);
+    }
+
+    componentDidMount() {
+        console.log('test')
+        const url = 'http://localhost:3001'
+        axios.get(`${url}/airtable`)
+          .then((res) => {
+            console.log(res.data)
+            this.setState({investorInfo: res.data})
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }
 
     handleInput(e) {
@@ -127,7 +140,7 @@ class ReportCard extends Component {
             ]
         }
         const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
-        axios.post(`${url}/sendgrid`, {htmlStr: htmlStr});
+        // axios.post(`${url}/sendgrid`, {htmlStr: htmlStr, email: this.state.email});
     }
 
     render() {
