@@ -137,7 +137,7 @@ class ReportCard extends Component {
     render() {
         const { step, fields, headers } = this.state;
         return (
-            <div className='row full-height align-items-center'>
+            <div className='row full-width align-items-center'>
                 <h4 className='title'>Tool title</h4>
                 <div className='col-12 col-sm-7'>
                     <div className='form'>
@@ -163,9 +163,9 @@ class ReportCard extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='col-5'>
+                <div className='col-5 city-image'>
                     <div className='d-none d-sm-block'>
-                        <p>A customized list of venture firms. All ideal fits for your business</p>
+                        <p className='image-text'>A customized list of venture firms. All ideal fits for your business</p>
                     </div>
                 </div>
             </div>

@@ -3,19 +3,11 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: #323536 !important;
+  background: white !important;
   font-family: Comfortaa;
 }
 
-.background {
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-}
-.background:after {
-  content: ' ';
-  border-top: 100vh solid #2D2C2D;
-  border-right: 100vw solid transparent;
-  width: 0;
-  position: absolute;
+.full-width {
+  width: 100%;
+  margin: 0;
 }
