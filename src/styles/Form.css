@@ -1,23 +1,6 @@
-.button-border {
-    border-radius: 20px;
-    border: solid black 1px;
-    width: 100px;
-}
-
-.card {
-    height: 550px;
-    width: 475px;
-    margin-top: auto;
-    margin-bottom: auto;
-    background: white;
-    position: relative;
-    display: flex;
-    justify-content: center;
+.form {
     align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 35px;
-    z-index: 2;
+    text-align: center;
 }
 
 .error {
@@ -27,16 +10,12 @@
     margin-top: -15px;
 }
 
-.full-height {
-    height: 100vh;
-}
 
 .inputField {
-    border-radius: 20px;
     width: 300px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: solid black 1px;
+    margin: auto auto 10% auto;
+    border: none;
+    border-bottom: solid black 1px;
     overflow: hidden;
     position: relative;
 }
@@ -49,6 +28,16 @@
 .selectBox {
     border:0px;
     outline:none;
+    width: 100%;
+    color: gray;
+}
+
+.selectBox option:first-child {
+    color: #ccc;
+}
+
+.select-arrow {
+    text-align: start;
 }
 
 .select-arrow:after {
