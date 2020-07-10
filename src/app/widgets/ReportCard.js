@@ -15,40 +15,32 @@ class ReportCard extends Component {
         super(props);
         this.state ={
             company: '',
-            email: '',
-            companyType: '',
             location: '',
-            companyStage: '',
-            DAU: '',
-            MAU: '',
-            NPSscore: '',
-            week2weekGrowth: '',
-            kValue: '',
+            preMoneyValuation: '',
+            customerType: '',
+            productType: '',
+            categories: [],
+            email: '',
             step: 0,
             investorInfo: [],
             fields: [
                 [
-                    {id: 'company', type: 'text', placeholder: '*Company Name'},
-                    {id: 'location', placeholder: '*Location', options: [
-                        'New York City', 'San Francisco', 'Everywhere Else'
+                    {id: 'company', type: 'text', placeholder: 'Company Name'},
+                    {id: 'location', placeholder: 'Location', options: [
+                        'Atlanta', 'Austin', 'Boston', 'Chicago', 'New York City', 'San Francisco', 'Seattle', 'Everywhere Else'
                     ]},
-                    {id: 'companyType', placeholder: '*Company Type', options: [
-                        'Consumer - Mobile/Internet', 'Enterprise SaaS', 'Consumer SaaS', 'Marketplace'
-                    ]}
                 ],
                 [
-                    {id: 'companyStage', placeholder: '*Company Stage', options: [
-                         'MVP', 'Early Acquisition', 'Proven Channel Acquisition', 'Early Evidence of PMF', 'PMF', 'Scale'
+                    {id: 'preMoneyValuation', placeholder: 'Your pre-money valuation', options: [
+                         '1-5M', '5-10M', '10-15M', '15-20M', '20-30M', '30-40M', '40-60M', '60-100M', '100M+'
                     ]},
-                    {id: 'DAU', placeholder: '*Daily Active Users (DAU)', options: [
-                        '0 - 300', '500 - 25k', '25k - 50k', '100k - 500k', '500k - 1M', '>1M'
+                    {id: 'customerType', placeholder: 'Customer Type', options: [
+                        'b2b', 'b2c'
                     ]},
-                   {id: 'MAU', placeholder: '*Monthly Active Users (MAU)', options: [
-                    '0 - 10k', '>15k', '750k - 1.5M', '3M - 15M', '15M - 30M', '>30M'
+                    {id: 'productType', placeholder: 'Product Type', options: [
+                        'Hardware', 'Software', 'Non-Tech'
                     ]},
-                    {id: 'NPSscore', type: 'number', placeholder: '*NPS score (-100 - +100)', min: -100, max: 100, errorMessage: 'Enter a number between -100 - 100', showError: false},
-                    {id: 'week2weekGrowth', type: 'number', placeholder: '*Week to week growth (%)', min: 0, max: 100, errorMessage: 'Enter a number between 0 - 100', showError: false},
-                    {id: 'kValue', type: 'number', placeholder: '*K - Value (0 - 10)', min: 0, max: 10, errorMessage: 'Enter a number between 0 - 10', showError: false},
+                    {id: 'categories', type: 'number', placeholder: 'Categories', min: 4, max: 10, errorMessage: 'Please select between 4 - 10', showError: false},
                 ],
                 [
                     {id: 'email', type: 'email', placeholder: '*Email', errorMessage: 'Enter a valid email', showError: false},
@@ -67,11 +59,10 @@ class ReportCard extends Component {
     }
 
     componentDidMount() {
-        console.log('test')
         const url = 'http://localhost:3001'
         axios.get(`${url}/airtable`)
           .then((res) => {
-            console.log(res.data)
+            console.log(res)
             this.setState({investorInfo: res.data})
           })
           .catch((err) => {
@@ -146,36 +137,39 @@ class ReportCard extends Component {
     render() {
         const { step, fields, headers } = this.state;
         return (
-            <div className='container-flex'>
-                <div className='row full-height'>
-                    <div className='logo'>
-                        <p className='logo-text'>Powered By</p>
-                        <img src={logo} alt='new stack ventures' className='logo-img'/>
-                    </div>
-                    <div className='col card'>
+            <div className='row full-height align-items-center'>
+                <h4 className='title'>Tool title</h4>
+                <div className='col-12 col-sm-7'>
+                    <div className='form'>
                         <h4 className='header' >{headers[step]}</h4>
-                          <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} validateInput={this.validateInput} />
+                            <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} validateInput={this.validateInput} />
                         {step === 0 && <p className='subtext'>Get a valuation estimate and grades on your metrics</p> }
-                        <div className='row'>
+                        <div className='row justify-content-around'>
                             {step !== 0 &&
-                              <button className='btn button-border' id='back' onClick={this.switchStep}>
+                                <button className='btn button-border' id='back' onClick={this.switchStep}>
                                 <i className="fa fa-chevron-left chevron"></i> Back
-                              </button>
+                                </button>
                             }
                             {step !== fields.length-1 &&
-                              <button className='btn button-border' id='next' onClick={this.switchStep}>
+                                <button className='btn button-border' id='next' onClick={this.switchStep}>
                                 Next <i className="fa fa-chevron-right chevron"></i>
-                              </button>
+                                </button>
                             }
                             {step === fields.length-1 &&
-                              <button className='btn button-border' id='submit' onClick={this.submitForm}>
+                                <button className='btn button-border' id='submit' onClick={this.submitForm}>
                                 Get Results!
-                              </button>
+                                </button>
                             }
                         </div>
                     </div>
                 </div>
+                <div className='col-5'>
+                    <div className='d-none d-sm-block'>
+                        <p>A customized list of venture firms. All ideal fits for your business</p>
+                    </div>
+                </div>
             </div>
+
         )
     }
 }
