@@ -181,8 +181,10 @@ class ReportCard extends Component {
                 </div>
                 <div className='col-5 city-image d-none d-sm-block'>
                     <div className='row full-width align-items-center'>
-                        <div className='col-12'>
-                            <p className='image-text'>A customized list of venture firms. All ideal fits for your business</p>
+                        <h4 className='image-text'>A customized list of venture firms. All ideal fits for your business</h4>
+                        <div className='full-ratchet'>
+                            <h6>Powered by</h6>
+                            <h6>The Full Ratchet</h6>
                         </div>
                     </div>
                 </div>

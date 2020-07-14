@@ -17,6 +17,14 @@
     color: white;
 }
 
+.full-ratchet {
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 65%;
+    top: 85%;
+}
+
 .chevron {
     font-size: 0.8em;
     font-weight: normal;
