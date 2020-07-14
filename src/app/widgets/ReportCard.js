@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from '../common/Form';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
+import categories from '../common/categories';
 import constraints from '../common/constraints';
 import emailTemplate from '../common/emailTemplate';
 import update from 'immutability-helper';
@@ -21,7 +22,7 @@ class ReportCard extends Component {
             hardware: false,
             software: false,
             nonTech: false,
-            categories: {},
+            userCats: {},
             email: '',
             step: 0,
             investorInfo: [],
@@ -40,9 +41,9 @@ class ReportCard extends Component {
                         {id: 'b2b', name: 'B2B'}, {id: 'b2c', name: 'B2C'}
                     ]},
                     {id: 'productType', placeholder: 'Product Type', type: 'checkbox', options: [
-                        {id: 'hardware', name: 'Hardware'}, {id: 'software', name: 'Software'}, {id: 'nonTech', name: 'Non-Tech'},
+                        {id: 'hardware', name: 'Hardware'}, {id: 'software', name: 'Software'}, {id: 'nonTech', name: 'Non-Tech'}, 
                     ]},
-                    {id: 'categories', placeholder: 'Categories', type: 'checkbox', min: 4, max: 10, errorMessage: 'Please select between 4 - 10', showError: false},
+                    {id: 'categories', placeholder: 'Categories', type: 'checkbox', min: 4, max: 10, errorMessage: 'Please select between 4 - 10', showError: false, options: categories},
                 ],
                 [
                     {id: 'email', type: 'email', placeholder: '*Email', errorMessage: 'Enter a valid email', showError: false},
@@ -62,10 +63,10 @@ class ReportCard extends Component {
     }
 
     componentDidMount() {
-        const url = 'http://localhost:3001'
+        const url = 'http://localhost:3001';
+
         axios.get(`${url}/airtable`)
           .then((res) => {
-            console.log(res)
             this.setState({investorInfo: res.data})
           })
           .catch((err) => {
@@ -81,7 +82,14 @@ class ReportCard extends Component {
 
     toggleCheckbox(e) {
         let { id } = e.target;
-        this.setState({[id]: !this.state[id]});
+        if (id.indexOf('Field') !== -1) {
+            const userCategories = this.state.userCats;
+            userCategories[id] ? delete userCategories[id] : userCategories[id] = 'x';
+
+            this.setState({userCats: userCategories});
+        } else {
+            this.setState({[id]: !this.state[id]});
+        }
     }
 
     switchStep(e) {
@@ -172,8 +180,10 @@ class ReportCard extends Component {
                     </div>
                 </div>
                 <div className='col-5 city-image d-none d-sm-block'>
-                    <div className=''>
-                        <p className='image-text'>A customized list of venture firms. All ideal fits for your business</p>
+                    <div className='row full-width align-items-center'>
+                        <div className='col-12'>
+                            <p className='image-text'>A customized list of venture firms. All ideal fits for your business</p>
+                        </div>
                     </div>
                 </div>
             </div>
