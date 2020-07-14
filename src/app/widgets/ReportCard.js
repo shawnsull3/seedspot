@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from '../common/Form';
-import logo from '../../images/newStack.png';
 import '../../styles/Form.css';
 import '../../styles/ReportCard.css';
 import constraints from '../common/constraints';
@@ -17,8 +16,11 @@ class ReportCard extends Component {
             company: '',
             location: '',
             preMoneyValuation: '',
-            customerType: '',
-            productType: '',
+            b2b: false,
+            b2c: false,
+            hardware: false,
+            software: false,
+            nonTech: false,
             categories: [],
             email: '',
             step: 0,
@@ -121,6 +123,7 @@ class ReportCard extends Component {
         const url = 'http://localhost:3001'
         axios.post(`${url}/airtable`, this.state);
         // function to send state data to logic processor
+
         const companyResults = {
             companyName: 'Streamline',
             estimatedValuation: '10M',
@@ -130,7 +133,7 @@ class ReportCard extends Component {
                 {name: 'NPS score', grade: 'D'},
             ]
         }
-        const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
+        // const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
         // axios.post(`${url}/sendgrid`, {htmlStr: htmlStr, email: this.state.email});
     }
 
@@ -143,28 +146,27 @@ class ReportCard extends Component {
                     <div className='form'>
                         <h4 className='header' >{headers[step]}</h4>
                             <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} validateInput={this.validateInput} />
-                        {step === 0 && <p className='subtext'>Get a valuation estimate and grades on your metrics</p> }
                         <div className='row justify-content-around'>
                             {step !== 0 &&
                                 <button className='btn button-border' id='back' onClick={this.switchStep}>
-                                <i className="fa fa-chevron-left chevron"></i> Back
+                                    <i className="fa fa-chevron-left chevron"></i> Back
                                 </button>
                             }
                             {step !== fields.length-1 &&
                                 <button className='btn button-border' id='next' onClick={this.switchStep}>
-                                Next <i className="fa fa-chevron-right chevron"></i>
+                                    Next <i className="fa fa-chevron-right chevron"></i>
                                 </button>
                             }
                             {step === fields.length-1 &&
                                 <button className='btn button-border' id='submit' onClick={this.submitForm}>
-                                Get Results!
+                                    Submit
                                 </button>
                             }
                         </div>
                     </div>
                 </div>
-                <div className='col-5 city-image'>
-                    <div className='d-none d-sm-block'>
+                <div className='col-5 city-image d-none d-sm-block'>
+                    <div className=''>
                         <p className='image-text'>A customized list of venture firms. All ideal fits for your business</p>
                     </div>
                 </div>
