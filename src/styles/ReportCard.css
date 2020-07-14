@@ -5,13 +5,16 @@
 }
 
 .city-image {
-    background-image: url('https://r1.ilikewallpaper.net/iphone-wallpapers/download/20964/Dark-Chicago-Cityscape--iphone-wallpaper-ilikewallpaper_com.jpg');
-    color: white;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('../images/Chicago_BW.jpg');
+    background-repeat:no-repeat;
+    background-position: center center;
+    color: black;
     height: 100vh;
 }
 
 .image-text {
     text-align: center;
+    color: white;
 }
 
 .chevron {
