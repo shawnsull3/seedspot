@@ -14,19 +14,30 @@ const Form = ({ fields, handleInput, state, validateInput }) => {
                                 value={state[field.id]}
                                 min={field.min}
                                 max={field.max} 
-                                className='form-control inputField' 
+                                className='inputField' 
                                 placeholder={field.placeholder} 
                                 onChange={handleInput}
                                 onBlur={ e => {field.errorMessage && validateInput(e, index)}} />
                             {field.showError && <div className='error'>{field.errorMessage}</div>}
                          </div>
+
+                      : field.type === 'checkbox' ?
+                        <div className='inputField' key={field.placeholder}>
+                            <div className='select-arrow' data-toggle="collapse" href={`#${field.id}`} aria-expanded="false" aria-controls={field.id}>
+                                {field.placeholder}
+                            </div>
+                            <div className="collapse" id={field.id}>
+                                Check
+                            </div>
+                        </div>
+                      
                       : field.options
                         && <div className='inputField' key={field.placeholder}>
                           <div className='select-arrow'>
                             <select 
                                 id={field.id} 
                                 value={state[field.id]}
-                                className='form-control selectBox' 
+                                className='selectBox' 
                                 onChange={handleInput}
                                 >
                                 <option value="" selected disabled >{field.placeholder}</option>
