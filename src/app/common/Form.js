@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/Form.css';
 
-const Form = ({ fields, handleInput, state, validateInput }) => {
+const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => {
     return (
         <form>
             {fields.map( (field, index) => {
@@ -27,7 +27,20 @@ const Form = ({ fields, handleInput, state, validateInput }) => {
                                 {field.placeholder}
                             </div>
                             <div className="collapse" id={field.id}>
-                                Check
+                                {field.options && field.options.map( option => (
+                                    <div className="form-check form-check-inline" key={option.id}>
+                                        <label className="form-check-label">
+                                            <input 
+                                                className="form-check-input" 
+                                                onChange={toggleCheckbox} 
+                                                checked={state[option.id]}
+                                                type="checkbox" 
+                                                id={option.id} 
+                                                value={option} /> 
+                                            {option.name}
+                                        </label>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                       

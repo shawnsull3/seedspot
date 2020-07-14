@@ -21,7 +21,7 @@ class ReportCard extends Component {
             hardware: false,
             software: false,
             nonTech: false,
-            categories: [],
+            categories: {},
             email: '',
             step: 0,
             investorInfo: [],
@@ -36,13 +36,13 @@ class ReportCard extends Component {
                     {id: 'preMoneyValuation', placeholder: 'Your pre-money valuation', options: [
                          '1-5M', '5-10M', '10-15M', '15-20M', '20-30M', '30-40M', '40-60M', '60-100M', '100M+'
                     ]},
-                    {id: 'customerType', placeholder: 'Customer Type', options: [
-                        'b2b', 'b2c'
+                    {id: 'customerType', placeholder: 'Customer Type', type: 'checkbox', options: [
+                        {id: 'b2b', name: 'B2B'}, {id: 'b2c', name: 'B2C'}
                     ]},
-                    {id: 'productType', placeholder: 'Product Type', options: [
-                        'Hardware', 'Software', 'Non-Tech'
+                    {id: 'productType', placeholder: 'Product Type', type: 'checkbox', options: [
+                        {id: 'hardware', name: 'Hardware'}, {id: 'software', name: 'Software'}, {id: 'nonTech', name: 'Non-Tech'},
                     ]},
-                    {id: 'categories', type: 'number', placeholder: 'Categories', min: 4, max: 10, errorMessage: 'Please select between 4 - 10', showError: false},
+                    {id: 'categories', placeholder: 'Categories', type: 'checkbox', min: 4, max: 10, errorMessage: 'Please select between 4 - 10', showError: false},
                 ],
                 [
                     {id: 'email', type: 'email', placeholder: '*Email', errorMessage: 'Enter a valid email', showError: false},
@@ -55,6 +55,7 @@ class ReportCard extends Component {
             ]
         }
         this.handleInput = this.handleInput.bind(this);
+        this.toggleCheckbox = this.toggleCheckbox.bind(this);
         this.switchStep = this.switchStep.bind(this);
         this.validateInput = this.validateInput.bind(this);
         this.submitForm = this.submitForm.bind(this);
@@ -76,6 +77,11 @@ class ReportCard extends Component {
         e.preventDefault();
         let { value, type, id } = e.target;
         this.setState({[id]: type === 'number' ? parseFloat(value) : type === 'email' ? value.toLowerCase() : value});
+    }
+
+    toggleCheckbox(e) {
+        let { id } = e.target;
+        this.setState({[id]: !this.state[id]});
     }
 
     switchStep(e) {
@@ -145,7 +151,7 @@ class ReportCard extends Component {
                 <div className='col-12 col-sm-7'>
                     <div className='form'>
                         <h4 className='header' >{headers[step]}</h4>
-                            <Form fields={fields[step]} handleInput={this.handleInput} state={this.state} validateInput={this.validateInput} />
+                            <Form fields={fields[step]} handleInput={this.handleInput} toggleCheckbox={this.toggleCheckbox} state={this.state} validateInput={this.validateInput} />
                         <div className='row justify-content-around'>
                             {step !== 0 &&
                                 <button className='btn button-border' id='back' onClick={this.switchStep}>
