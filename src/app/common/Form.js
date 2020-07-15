@@ -26,10 +26,10 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                             <div className='select-arrow' data-toggle="collapse" href={`#${field.id}`} aria-expanded="false" aria-controls={field.id}>
                                 {field.placeholder}
                             </div>
-                            <div className={field.id !== "categories" ? "collapse" : "collapse overflow-auto categories"} id={field.id}>
+                            <div className={field.id === "categories" ? "collapse overflow-auto categories" : "collapse"} id={field.id}>
                             {field.id === "categories" && <p className='cat-subtext'>Select at least 4 and up to 10 categories that best describe your business</p>}
                                 {field.options && field.options.map( option => (
-                                    <div className="form-check form-check-inline" key={option.id}>
+                                    <div className={field.id === "categories" ? "form-check form-check-inline third" : "form-check skew-left"} key={option.id}>
                                         <label className="form-check-label">
                                             <input 
                                                 className="form-check-input" 

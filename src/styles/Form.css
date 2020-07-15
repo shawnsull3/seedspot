@@ -10,6 +10,35 @@
     margin-top: -15px;
 }
 
+.skew-left {
+    text-align: start;
+    padding: 0 0 0 50px;
+}
+
+.categories {
+    height: 15vh;
+    text-align: start;
+}
+
+.third {
+    width: 33%;
+    margin-right: 0;
+}
+
+.cat-subtext {
+    font-size: 0.7em;
+    margin: 5px 0 0 0;
+}
+
+.form-check-label {
+    font-size: 0.7em;
+    padding-top: 5px;
+}
+
+.form-check-input {
+    margin-top: 0;
+}
+
 
 .inputField {
     width: 300px;
@@ -18,11 +47,6 @@
     border-bottom: solid black 1px;
     overflow: hidden;
     position: relative;
-}
-
-.subtext {
-    color: gray;
-    font-size: 0.8em;
 }
 
 .selectBox {
@@ -44,7 +68,7 @@
     content: '\f078';
     font: normal normal normal 0.7em/1 FontAwesome;
     right: 8%;
-    top: 35%;
+    top: 5px;
     position: absolute;
     pointer-events: none;
 }
