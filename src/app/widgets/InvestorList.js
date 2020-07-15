@@ -5,15 +5,16 @@ import '../../styles/ReportCard.css';
 import categories from '../common/categories';
 import constraints from '../common/constraints';
 import emailTemplate from '../common/emailTemplate';
+import firmListAlgorithm from '../common/firmListAlgorithm';
 import update from 'immutability-helper';
 import { validate } from 'validate.js';
 import { renderToStaticMarkup } from 'react-dom/server'
 import axios from 'axios';
 
-class ReportCard extends Component {
+class InvestorList extends Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             company: '',
             location: '',
             preMoneyValuation: '',
@@ -134,19 +135,31 @@ class ReportCard extends Component {
     }
 
     submitForm() {
-        const url = 'http://localhost:3001'
-        axios.post(`${url}/airtable`, this.state);
-        // function to send state data to logic processor
+        const url = 'http://localhost:3001';
 
-        const companyResults = {
-            companyName: 'Streamline',
-            estimatedValuation: '10M',
-            metrics: [
-                {name: 'Daily Active Users', grade: 'B'},
-                {name: 'Monthly Active Users', grade: 'A+'},
-                {name: 'NPS score', grade: 'D'},
-            ]
+        const userInfo = {
+            preMoneyValuation: this.state.preMoneyValuation,
+            b2b: this.state.b2b,
+            b2c: this.state.b2c,
+            hardware: this.state.hardware,
+            software: this.state.software,
+            nonTech: this.state.nonTech,
+            userCats: this.state.userCats,
         }
+        const firmList = firmListAlgorithm(userInfo, this.state.investorInfo);
+        console.log(firmList);
+
+        // axios.post(`${url}/airtable`, this.state);
+
+        // const companyResults = {
+        //     companyName: 'Streamline',
+        //     estimatedValuation: '10M',
+        //     metrics: [
+        //         {name: 'Daily Active Users', grade: 'B'},
+        //         {name: 'Monthly Active Users', grade: 'A+'},
+        //         {name: 'NPS score', grade: 'D'},
+        //     ]
+        // }
         // const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
         // axios.post(`${url}/sendgrid`, {htmlStr: htmlStr, email: this.state.email});
     }
@@ -194,4 +207,4 @@ class ReportCard extends Component {
     }
 }
 
-export default ReportCard;
+export default InvestorList;
