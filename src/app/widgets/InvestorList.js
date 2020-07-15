@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from '../common/Form';
 import '../../styles/Form.css';
-import '../../styles/ReportCard.css';
+import '../../styles/InvestorList.css';
 import categories from '../common/categories';
 import constraints from '../common/constraints';
 import emailTemplate from '../common/emailTemplate';
@@ -150,16 +150,6 @@ class InvestorList extends Component {
         console.log(firmList);
 
         // axios.post(`${url}/airtable`, this.state);
-
-        // const companyResults = {
-        //     companyName: 'Streamline',
-        //     estimatedValuation: '10M',
-        //     metrics: [
-        //         {name: 'Daily Active Users', grade: 'B'},
-        //         {name: 'Monthly Active Users', grade: 'A+'},
-        //         {name: 'NPS score', grade: 'D'},
-        //     ]
-        // }
         // const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
         // axios.post(`${url}/sendgrid`, {htmlStr: htmlStr, email: this.state.email});
     }
@@ -173,15 +163,15 @@ class InvestorList extends Component {
                     <div className='form'>
                         <h4 className='header' >{headers[step]}</h4>
                             <Form fields={fields[step]} handleInput={this.handleInput} toggleCheckbox={this.toggleCheckbox} state={this.state} validateInput={this.validateInput} />
-                        <div className='row justify-content-around'>
+                        <div className='row justify-content-center'>
                             {step !== 0 &&
                                 <button className='btn button-border' id='back' onClick={this.switchStep}>
-                                    <i className="fa fa-chevron-left chevron"></i> Back
+                                    <i className="fa fa-chevron-left chevron" id='back' onClick={this.switchStep}></i> Back
                                 </button>
                             }
                             {step !== fields.length-1 &&
                                 <button className='btn button-border' id='next' onClick={this.switchStep}>
-                                    Next <i className="fa fa-chevron-right chevron"></i>
+                                    Next <i className="fa fa-chevron-right chevron" id='next' onClick={this.switchStep}></i>
                                 </button>
                             }
                             {step === fields.length-1 &&
