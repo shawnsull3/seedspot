@@ -1,11 +1,11 @@
 let userInfo = {
     preMoneyValuation: '10-15M',
-    b2b: false,
+    b2b: true,
     b2c: true,
     hardware: false,
     software: true,
     nonTech: true,
-    userCats: {'Field 42': "x", 'Field 45': "x", 'Field 47': "x"},
+    userCats: {'Field 44': "x", 'Field 45': "x", 'Field 49': "x", 'Field 86': "x"},
 }
 
 const firmListAlgorithm = (userInfo, investors) => {
@@ -50,11 +50,17 @@ const firmListAlgorithm = (userInfo, investors) => {
         if (fitFirms2[i].leads) {
             fitFirms2[i].score += 20;
         }
-        // console.log('score',fitFirms2[i].score)
 
-
+        userCats.forEach( category => {
+            if (fitFirms2[i][category]) {
+                fitFirms2[i].score += 5;
+            }
+        })
+        console.log('score',fitFirms2[i].score)
     }
 
+    fitFirms2.sort(function(a, b) {return b.score - a.score});
+    return fitFirms2.slice(0, 30);
 }
 
 let investors = [
@@ -92,6 +98,7 @@ let investors = [
       location: 'Arlington, VA',
       website: 'https://sandscapitalventures.com/',
       leads: 'x',
+      'Field 8': 'x',
       'Field 11': 'x',
       'Field 12': 'x',
       'Field 13': 'x',
@@ -122,8 +129,9 @@ let investors = [
       teir: '4',
       location: 'Brighton, VT',
       website: 'www.underdogventures.com',
-      leads: 'x',
+    //   leads: 'x',
       'Strategic - The Primary Focus Areas for the Firm': 'x',
+      'Field 8': 'x',
       'Field 15': 'x',
       'Field 18': 'x',
       'Field 83': 'x',
@@ -132,6 +140,6 @@ let investors = [
     }
   ];
 
-firmListAlgorithm(userInfo, investors);
+  firmListAlgorithm(userInfo, investors);
 
 // export default firmListAlgorithm;
