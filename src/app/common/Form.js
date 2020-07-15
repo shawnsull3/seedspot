@@ -26,23 +26,42 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                             <div className='select-arrow' data-toggle="collapse" href={`#${field.id}`} aria-expanded="false" aria-controls={field.id}>
                                 {field.placeholder}
                             </div>
-                            <div className={field.id === "categories" ? "collapse overflow-auto categories" : "collapse"} id={field.id}>
-                            {field.id === "categories" && <p className='cat-subtext'>Select at least 4 and up to 10 categories that best describe your business</p>}
-                                {field.options && field.options.map( option => (
-                                    <div className={field.id === "categories" ? "form-check form-check-inline third" : "form-check skew-left"} key={option.id}>
-                                        <label className="form-check-label">
-                                            <input 
-                                                className="form-check-input" 
-                                                onChange={toggleCheckbox} 
-                                                checked={state[option.id]}
-                                                type="checkbox" 
-                                                id={option.id} 
-                                                value={option} /> 
-                                            {option.name}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
+                            {field.id === 'categories' ? 
+                                <div className="collapse overflow-auto categories" id={field.id}>
+                                    <p className='cat-subtext'>Select at least 4 and up to 10 categories that best describe your business</p>
+                                    {field.options && field.options.map( option => (
+                                        <div className="form-check form-check-inline third" key={option.id}>
+                                            <label className="form-check-label">
+                                                <input 
+                                                    className="form-check-input" 
+                                                    onChange={toggleCheckbox} 
+                                                    checked={state.userCats[option.id] === 'x' ? true : false}
+                                                    type="checkbox" 
+                                                    id={option.id} 
+                                                    value={option} /> 
+                                                {option.name}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                                :
+                                <div className="collapse" id={field.id}>
+                                    {field.options && field.options.map( option => (
+                                        <div className="form-check skew-left" key={option.id}>
+                                            <label className="form-check-label">
+                                                <input 
+                                                    className="form-check-input" 
+                                                    onChange={toggleCheckbox} 
+                                                    checked={state[option.id]}
+                                                    type="checkbox" 
+                                                    id={option.id} 
+                                                    value={option} /> 
+                                                {option.name}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                            }
                         </div>
                       
                       : field.options
