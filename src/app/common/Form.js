@@ -22,12 +22,12 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                          </div>
 
                       : field.type === 'checkbox' ?
-                        <div className='inputField' key={field.placeholder}>
-                            <div className='select-arrow' data-toggle="collapse" href={`#${field.id}`} aria-expanded="false" aria-controls={field.id}>
+                        <div className={field.id ==='categories' ? 'catInputField' :'inputField'} key={field.placeholder}>
+                            <div className='select-arrow'>
                                 {field.placeholder}
                             </div>
                             {field.id === 'categories' ? 
-                                <div className="collapse overflow-auto categories" id={field.id}>
+                                <div className="overflow-auto categories" id={field.id}>
                                     <p className='cat-subtext'>Select at least 4 and up to 10 categories that best describe your business</p>
                                     {field.options && field.options.map( option => (
                                         <div className="form-check form-check-inline third" key={option.id}>
@@ -45,7 +45,7 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                                     ))}
                                 </div>
                                 :
-                                <div className="collapse" id={field.id}>
+                                <div className="" id={field.id}>
                                     {field.options && field.options.map( option => (
                                         <div className="form-check skew-left" key={option.id}>
                                             <label className="form-check-label">

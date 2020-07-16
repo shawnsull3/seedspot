@@ -16,18 +16,19 @@
 }
 
 .categories {
-    height: 15vh;
+    height: 40vh;
     text-align: start;
 }
 
 .third {
-    width: 33%;
-    margin-right: 0;
+    width: 31%;
+    margin-right: 0.5%;
 }
 
 .cat-subtext {
     font-size: 0.7em;
-    margin: 5px 0 0 0;
+    margin: 5px 0 5px 0;
+    width: 75%;
 }
 
 .form-check-label {
@@ -39,14 +40,24 @@
     margin-top: 0;
 }
 
-
 .inputField {
-    width: 300px;
+    width: 60%;
     margin: auto auto 10% auto;
     border: none;
     border-bottom: solid black 1px;
     overflow: hidden;
     position: relative;
+    text-align: start;
+}
+
+.catInputField {
+    width: 85%;
+    margin: auto auto 10% auto;
+    border: none;
+    border-bottom: solid black 1px;
+    overflow: hidden;
+    position: relative;
+    text-align: start;
 }
 
 .selectBox {
