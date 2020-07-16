@@ -8,7 +8,7 @@ export const firmListAlgorithm = (userInfo, investors) => {
         '30-40M': 'Field 11',
         '40-60M': 'Field 12',
         '60-100M': 'Field 13',
-        '100+M': 'Field 14',
+        '100M+': 'Field 14',
     }
     const optimistic_PMV_key = {
         '1-5M': 'Field 20',
@@ -19,7 +19,7 @@ export const firmListAlgorithm = (userInfo, investors) => {
         '30-40M': 'Field 25',
         '40-60M': 'Field 26',
         '60-100M': 'Field 27',
-        '100+M': 'Field 28',
+        '100M+': 'Field 28',
     }
     const strategicPMV = strategic_PMV_key[userInfo.preMoneyValuation];
     const optimisticPMV = optimistic_PMV_key[userInfo.preMoneyValuation];
@@ -28,8 +28,7 @@ export const firmListAlgorithm = (userInfo, investors) => {
     let fitFirms2 = [];
     let fitFirms3 = [];
 
-    var t0 = performance.now() 
-    // building fitfirm arrays
+    // building fitFirm arrays
     for (let i = 0; i < investors.length; i++) {
         if (investors[i]['VC Firm Name'] === 'VC Firm Name') {
             continue;
@@ -76,99 +75,8 @@ export const firmListAlgorithm = (userInfo, investors) => {
         fitFirms3 = scoreAndSort(fitFirms3);
         fitFirms2 = fitFirms2.concat(fitFirms3.slice(0,(30 - fitFirms2.length)));
     }
-    
-    var t1 = performance.now() 
-    console.log("algorithm took " + (t1 - t0) + " milliseconds.")
 
     return fitFirms2.slice(0, 30);
 }
 
 export default firmListAlgorithm;
-
-// let userInfo = {
-//     preMoneyValuation: '10-15M',
-//     b2b: true,
-//     b2c: true,
-//     hardware: false,
-//     software: true,
-//     nonTech: true,
-//     userCats: {'Field 44': "x", 'Field 45': "x", 'Field 49': "x", 'Field 86': "x"},
-// }
-// let investors = [
-//     {
-//       'VC Firm Name': 'Material Impact',
-//       teir: '4',
-//       location: 'Boston, MA',
-//       website: 'http://materialimpact.com/',
-//       leads: 'x',
-//       'Field 8': 'x',
-//       'Field 9': 'x',
-//       'Field 15': 'x',
-//       'Field 16': 'x',
-//       'Field 18': 'x',
-//       'Field 19': 'x',
-//       'Field 21': 'x',
-//       'Field 24': 'x',
-//       'Field 29': 'x',
-//       'Field 30': 'x',
-//       'Field 31': 'x',
-//       'Field 32': 'x',
-//       'Field 33': 'x',
-//       'Field 49': 'x',
-//       'Field 52': 'x',
-//       'Field 85': 'x',
-//       'Field 95': 'x',
-//       'Field 99': 'x',
-//       'Field 116': 'x',
-//       'Field 117': 'x',
-//       'Field 122': 'x'
-//     },
-//     {
-//       'VC Firm Name': 'Sands Capital Ventures',
-//       teir: '4',
-//       location: 'Arlington, VA',
-//       website: 'https://sandscapitalventures.com/',
-//       leads: 'x',
-//       'Field 8': 'x',
-//       'Field 11': 'x',
-//       'Field 12': 'x',
-//       'Field 13': 'x',
-//       'Field 14': 'x',
-//       'Field 15': 'x',
-//       'Field 16': 'x',
-//       'Field 17': 'x',
-//       'Field 18': 'x',
-//       'Field 22': 'x',
-//       'Field 23': 'x',
-//       'Field 24': 'x',
-//       'Field 29': 'x',
-//       'Field 30': 'x',
-//       'Field 31': 'x',
-//       'Field 32': 'x',
-//       'Field 44': 'x',
-//       'Field 45': 'x',
-//       'Field 52': 'x',
-//       'Field 66': 'x',
-//       'Field 75': 'x',
-//       'Field 96': 'x',
-//       'Field 109': 'x',
-//       'Field 117': 'x',
-//       'Field 122': 'x'
-//     },
-//     {
-//       'VC Firm Name': 'Underdog Ventures',
-//       teir: '4',
-//       location: 'Brighton, VT',
-//       website: 'www.underdogventures.com',
-//     //   leads: 'x',
-//       'Strategic - The Primary Focus Areas for the Firm': 'x',
-//       'Field 8': 'x',
-//       'Field 15': 'x',
-//       'Field 18': 'x',
-//       'Field 83': 'x',
-//       'Field 86': 'x',
-//       'Field 122': 'x'
-//     }
-//   ];
-
-//   firmListAlgorithm(userInfo, investors);
