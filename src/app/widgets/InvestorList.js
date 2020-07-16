@@ -6,6 +6,7 @@ import categories from '../common/categories';
 import constraints from '../common/constraints';
 import emailTemplate from '../common/emailTemplate';
 import firmListAlgorithm from '../common/firmListAlgorithm';
+import new_stack_logo from '../../images/new_stack_logo.png';
 import update from 'immutability-helper';
 import { validate } from 'validate.js';
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -44,6 +45,8 @@ class InvestorList extends Component {
                     {id: 'productType', placeholder: 'Product Type', type: 'checkbox', options: [
                         {id: 'hardware', name: 'Hardware'}, {id: 'software', name: 'Software'}, {id: 'nonTech', name: 'Non-Tech'}, 
                     ]},
+                ],
+                [
                     {id: 'categories', placeholder: 'Categories', type: 'checkbox', min: 4, max: 10, errorMessage: 'Please select between 4 - 10', showError: false, options: categories},
                 ],
                 [
@@ -52,8 +55,9 @@ class InvestorList extends Component {
             ],
             headers: [
                 'Get Started',
-                'Step 2 of 3',
-                'Step 3 of 3',
+                'Step 2 of 4',
+                'Step 3 of 4',
+                'Step 4 of 4',
             ]
         }
         this.handleInput = this.handleInput.bind(this);
@@ -158,10 +162,10 @@ class InvestorList extends Component {
         const { step, fields, headers } = this.state;
         return (
             <div className='row full-width align-items-center'>
-                <h4 className='title'>Tool title</h4>
-                <div className='col-12 col-sm-7'>
+                <h4 className='title'>Stack Tools</h4>
+                <div className='col-12 col-sm-7 col-md-6 col-lg-5 col-xl-4'>
                     <div className='form'>
-                        <h4 className='header' >{headers[step]}</h4>
+                        <h2 className='header' >{headers[step]}</h2>
                             <Form fields={fields[step]} handleInput={this.handleInput} toggleCheckbox={this.toggleCheckbox} state={this.state} validateInput={this.validateInput} />
                         <div className='row justify-content-center'>
                             {step !== 0 &&
@@ -182,12 +186,12 @@ class InvestorList extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='col-5 city-image d-none d-sm-block'>
-                    <div className='row full-width align-items-center'>
-                        <h4 className='image-text'>A customized list of venture firms. All ideal fits for your business</h4>
+                <div className='col-5 col-md-6 col-lg-7 col-xl-8 city-image d-none d-sm-block'>
+                    <div className='row full-width align-items-center justify-content-center'>
+                        <h3 className='image-text'>A customized list of venture firms. All ideal fits for your business</h3>
                         <div className='full-ratchet'>
                             <h6>Powered by</h6>
-                            <h6>The Full Ratchet</h6>
+                            <img className='logo' src={new_stack_logo} alt='New Stack Logo' />
                         </div>
                     </div>
                 </div>
