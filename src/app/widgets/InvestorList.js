@@ -162,7 +162,9 @@ class InvestorList extends Component {
         const { step, fields, headers } = this.state;
         return (
             <div className='row full-width align-items-center'>
-                <h4 className='title'>Stack Tools</h4>
+                <div className='title'>
+                    <h4 className='red'>Stack</h4> <h4 className='grey'>Tools</h4>
+                </div>
                 <div className='col-12 col-sm-7 col-md-6 col-lg-5 col-xl-4'>
                     <div className='form'>
                         <h2 className='header' >{headers[step]}</h2>

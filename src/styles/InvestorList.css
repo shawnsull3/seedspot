@@ -1,7 +1,24 @@
+@font-face {
+    font-family: newStackFont;
+    src: url("../app/common/newStackFont.otf") format("opentype");
+}
+
 .title {
     position: absolute;
     left: 5%;
     top: 5%;
+    font-family: newStackFont;
+}
+
+.red {
+    color: #E80303;
+    float: left
+}
+
+.grey {
+    color: #383838;
+    float: right;
+    margin-left: 5px;
 }
 
 .city-image {
@@ -12,17 +29,23 @@
     height: 100vh;
 }
 
+    /* potential media queries for width on differen screen size */
 .image-text {
     text-align: center;
     color: white;
+    width: 75%;
 }
 
 .full-ratchet {
     color: white;
     text-align: center;
     position: absolute;
-    left: 65%;
-    top: 85%;
+    left: 73%;
+    top: 83%;
+}
+
+.logo {
+    width: 100px;
 }
 
 .chevron {
@@ -34,11 +57,11 @@
 .btn {
     background-color: rgb(67, 9, 94);
     color: white;
-    margin: 0 25px 0 25px;
+    margin: 0 8% 0 8%;
 }
 
 .btn:hover {
-    color: white;
+    color: rgb(168, 156, 156);
 }
 
 .button-border {
