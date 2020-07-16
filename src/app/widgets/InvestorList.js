@@ -165,7 +165,7 @@ class InvestorList extends Component {
                 <div className='title'>
                     <h4 className='red'>Stack</h4> <h4 className='grey'>Tools</h4>
                 </div>
-                <div className='col-12 col-sm-7 col-md-6 col-lg-5 col-xl-4'>
+                <div className='col-12 col-sm-8 col-md-6 col-lg-6 col-xl-5'>
                     <div className='form'>
                         <h2 className='header' >{headers[step]}</h2>
                             <Form fields={fields[step]} handleInput={this.handleInput} toggleCheckbox={this.toggleCheckbox} state={this.state} validateInput={this.validateInput} />
@@ -188,7 +188,7 @@ class InvestorList extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='col-5 col-md-6 col-lg-7 col-xl-8 city-image d-none d-sm-block'>
+                <div className='col-4 col-md-6 col-lg-6 col-xl-7 city-image d-none d-sm-block'>
                     <div className='row full-width align-items-center justify-content-center'>
                         <h3 className='image-text'>A customized list of venture firms. All ideal fits for your business</h3>
                         <div className='full-ratchet'>
