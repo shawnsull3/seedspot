@@ -30,7 +30,7 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                                 <div className="overflow-auto categories" id={field.id}>
                                     <p className='cat-subtext'>Select at least 4 and up to 10 categories that best describe your business</p>
                                     {field.options && field.options.map( option => (
-                                        <div className="form-check form-check-inline third" key={option.id}>
+                                        <div className="form-check form-check-inline cat-spacing" key={option.id}>
                                             <input 
                                                 className="form-check-input" 
                                                 onChange={toggleCheckbox} 

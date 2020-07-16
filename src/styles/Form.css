@@ -74,9 +74,15 @@ select::-ms-expand {
     text-align: start;
 }
 
-.third {
+.cat-spacing {
     width: 31%;
     margin-right: 0.5%;
+}
+
+@media (max-width: 525px) {
+    .cat-spacing {
+        width: 100%;
+    }
 }
 
 .cat-subtext {
