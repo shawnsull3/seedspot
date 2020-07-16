@@ -31,14 +31,14 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                                     <p className='cat-subtext'>Select at least 4 and up to 10 categories that best describe your business</p>
                                     {field.options && field.options.map( option => (
                                         <div className="form-check form-check-inline third" key={option.id}>
-                                            <label className="form-check-label">
-                                                <input 
-                                                    className="form-check-input" 
-                                                    onChange={toggleCheckbox} 
-                                                    checked={state.userCats[option.id] === 'x' ? true : false}
-                                                    type="checkbox" 
-                                                    id={option.id} 
-                                                    value={option} /> 
+                                            <input 
+                                                className="form-check-input" 
+                                                onChange={toggleCheckbox} 
+                                                checked={state.userCats[option.id] === 'x' ? true : false}
+                                                type="checkbox" 
+                                                id={option.id} 
+                                                value={option} /> 
+                                            <label className="form-check-label" htmlFor={option.id}>
                                                 {option.name}
                                             </label>
                                         </div>
@@ -48,14 +48,14 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                                 <div className="" id={field.id}>
                                     {field.options && field.options.map( option => (
                                         <div className="form-check skew-left" key={option.id}>
-                                            <label className="form-check-label">
-                                                <input 
-                                                    className="form-check-input" 
-                                                    onChange={toggleCheckbox} 
-                                                    checked={state[option.id]}
-                                                    type="checkbox" 
-                                                    id={option.id} 
-                                                    value={option} /> 
+                                            <input 
+                                                className="form-check-input" 
+                                                onChange={toggleCheckbox} 
+                                                checked={state[option.id]}
+                                                type="checkbox" 
+                                                id={option.id} 
+                                                value={option} /> 
+                                            <label className="form-check-label" htmlFor={option.id}>
                                                 {option.name}
                                             </label>
                                         </div>
