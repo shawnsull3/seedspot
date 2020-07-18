@@ -89,8 +89,17 @@ class InvestorList extends Component {
         let { id } = e.target;
         if (id.indexOf('Field') !== -1) {
             const userCategories = this.state.userCats;
-            userCategories[id] ? delete userCategories[id] : userCategories[id] = 'x';
 
+            if (userCategories[id]) {
+                delete userCategories[id];
+            } else {
+                for (let i=0; i < categories.length; i++) {
+                    if (categories[i].id === id) {
+                        userCategories[id] = categories[i].name;
+                        break;
+                    }
+                }
+            }
             this.setState({userCats: userCategories});
         } else {
             this.setState({[id]: !this.state[id]});
@@ -142,6 +151,9 @@ class InvestorList extends Component {
         const url = 'http://localhost:3001';
 
         const userInfo = {
+            company: this.state.company,
+            location: this.state.location,
+            email: this.state.email,
             preMoneyValuation: this.state.preMoneyValuation,
             b2b: this.state.b2b,
             b2c: this.state.b2c,
@@ -153,7 +165,7 @@ class InvestorList extends Component {
         const firmList = firmListAlgorithm(userInfo, this.state.investorInfo);
         console.log(firmList);
 
-        // axios.post(`${url}/airtable`, this.state);
+        axios.post(`${url}/airtable`, userInfo);
         // const htmlStr = renderToStaticMarkup(emailTemplate(companyResults))
         // axios.post(`${url}/sendgrid`, {htmlStr: htmlStr, email: this.state.email});
     }

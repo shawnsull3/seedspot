@@ -34,7 +34,7 @@ const Form = ({ fields, handleInput, toggleCheckbox, state, validateInput }) => 
                                             <input 
                                                 className="form-check-input" 
                                                 onChange={toggleCheckbox} 
-                                                checked={state.userCats[option.id] === 'x' ? true : false}
+                                                checked={state.userCats[option.id] ? true : false}
                                                 type="checkbox" 
                                                 id={option.id} 
                                                 value={option} /> 
